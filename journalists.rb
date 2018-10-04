@@ -17,22 +17,18 @@ def nombreliste
   continue
 end
 
-# détermine une variable journalisteschiffres à partir de journalistes
-# .grep permet de ne chercher que les éléments contenant les caractères entre /[ ]/ , ici de 0 à 9
-# affiche la variable journalisteschiffres
+# affiche le nombre d'éléments contenant au moins un chiffre dans leur nom
 def chiffreliste
   journalisteschiffres = @journalistes.grep /[0-9]/
   puts "Le nombre de journalistes dont le compte contient un chiffre est de #{journalisteschiffres.length}"
   continue
 end
 
-# détermine une variable nombreaude en compteur
-# vérifie poue chaque élément de journalistes si il contient le terme "aude" sans faire attention à la casse
-# si la vérification est vraie, ajoute 1 au compteur puis affiche la variable du compteur
+# affiche le nombre d'éléments contenant le terme "Aude"
 def aude
   nombreaude = 0
   @journalistes.each do |na|
-    if na.index (/aude/i)
+    if na =~ /aude/i
       nombreaude += 1
     end
                     end
@@ -40,50 +36,38 @@ def aude
   continue
 end
 
-# détermine une variable nombremajfirst à partir de journalistes
-# .select permet de sélectionner les éléments de l'array correspondant au décrit entre {}
-# Ici, on demande à ce que le caractère 1 de l'élément ( donc celui juste après le @ ) soit en capitales et ne soit pas un underscore
-# affiche par la suite le nombre d'éléments présents dans nombremajfirst
+# affiche le nombre d'éléments commençant par une majuscule
 def majliste
-  nombremajfirst = @journalistes.select { |dude|
-                                        dude[1] == dude[1].capitalize && dude[1] != "_"
+  nombremajfirst = @journalistes.select { |pl|
+                                        pl[1] == pl[1].capitalize && pl[1] =~ /[A-Z]/
                                       }
   puts "Le nombre de journalistes dont le compte commence par une majuscule est de #{nombremajfirst.length}"
   continue
 end
 
-# détermine une variable journalistesmajall à partir de journalistes
-# .grep permet de ne chercher que les éléments contenant les caractères entre /[ ]/ , ici de A à Z ( majuscules )
-# affiche la variable journalistesmajall
+# affiche le nombre d'éléments contenant une majuscule
 def majalllistes
   journalistesmajall = @journalistes.grep /[A-Z]/
   puts "Le nombre de journalistes dont le compte contient une majuscule est de #{journalistesmajall.length}"
   continue
 end
 
-# détermine une variable journalistes_ qui sert de compteur
-# pour chaque élément de l'array journaliste, déterminés en une variable j_, effectue l'action suivante :
-# remplit une variable machin avec .chars qui permet de décomposer les caractères d'une variable en éléments d'un Array
-# détermine une variable numberunderscore à partir de la variable machin
-# sélectionne chacun des éléments de la variable machin et vérifie si il s'agit d'un underscore
-# si vrai, le rajoute au compteur de journalistes_
-# affiche la variable journalistes_
+# affiche le nombre total d'underscores dans l'array
 def underscore
   journalistes_ = 0
   @journalistes.each do |j_|
     machin = j_.chars
-    numberunderscore = machin.select { |underscore|
-                                        underscore == "_"
-                                      }
-    journalistes_ += numberunderscore.length
+    machin.each do |temp|
+      if temp == "_"
+        journalistes_ += 1
+      end
+                end
                     end
   puts "Le nombre de journalistes dont le compte contient un underscore est de #{journalistes_}"
   continue
 end
 
-# affiche un message en caps lock
-# .sort_by permet de classer alphabétiquement les caractères
-# .downcase permet de ne pas faire attention à la casse en considérant les éléments en minuscules
+# affiche une liste triée par ordre alphabétique
 def alphabetliste
   puts "DEBUT DE LA LISTE DES JOURNALISTES PAR ORDRE ALPHABETIQUE"
   10.times do print "-" end
