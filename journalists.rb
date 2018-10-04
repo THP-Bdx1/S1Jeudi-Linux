@@ -27,8 +27,8 @@ end
 # affiche le nombre d'éléments contenant le terme "Aude"
 def aude
   nombreaude = 0
-  @journalistes.each do |na|
-    if na =~ /aude/i
+  @journalistes.each do |handle|
+    if handle =~ /aude/i
       nombreaude += 1
     end
                     end
@@ -55,10 +55,10 @@ end
 # affiche le nombre total d'underscores dans l'array
 def underscore
   journalistes_ = 0
-  @journalistes.each do |j_|
-    machin = j_.chars
-    machin.each do |temp|
-      if temp == "_"
+  @journalistes.each do |handle|
+    array_chars = handle.chars #Création d'un array array_chars contenant séparement chaque charactere de handle  Exemple : Si handle = "blabla" array_chars = [b, l, a, b, l, a]
+    array_chars.each do |char_seul|
+      if char_seul == "_"
         journalistes_ += 1
       end
                 end
