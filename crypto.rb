@@ -26,14 +26,14 @@ def grandevaleur
                           v = v.to_f
                         }
   @cryptocurrency.each do |k, v|
-    if knum >= 1 && v == vmax[1]
-      print ", " + k
-    elsif
-      v == vmax[1]
+    if v == vmax[1] && knum == 0
       knum =+ 1
-      print k
+      print k + " (#{v})"
+    elsif v == vmax[1] && knum >= 1
+      print ", " + k + " (#{v})"
+
     end
-                    end
+                      end
   continue
 end
 
@@ -46,12 +46,12 @@ def petitevaleur
                           v = v.to_f
                         }
   @cryptocurrency.each do |k, v|
-    if knum >= 1 && v == vmin[1]
-      print ", " + k
-    elsif
-      v == vmin[1]
+    if v == vmin[1] && knum == 0
       knum =+ 1
-      print k
+      print k + " (#{v})"
+    elsif knum >= 1 && v == vmin[1]
+      print ", " + k + " (#{v})"
+
     end
                     end
   continue
