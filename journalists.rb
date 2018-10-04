@@ -19,7 +19,7 @@ end
 
 # affiche le nombre d'éléments contenant au moins un chiffre dans leur nom
 def chiffreliste
-  journalisteschiffres = @journalistes.grep /[0-9]/
+  journalisteschiffres = @journalistes.grep /[0-9]/ # .grep permet de sélectionner les éléments d'un array contenant au moins un des caractères entre /[]/ ; en l'occurence, il les range dans un nouvel array journalisteschiffres 
   puts "Le nombre de journalistes dont le compte contient un chiffre est de #{journalisteschiffres.length}"
   continue
 end
